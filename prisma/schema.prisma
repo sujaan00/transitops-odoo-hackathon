@@ -1,0 +1,201 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String         @id @default(cuid())
+  name         String
+  email        String         @unique
+  passwordHash String
+  role         String
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  activities   ActivityLog[]
+  notifications Notification[]
+
+  @@index([role])
+}
+
+model Vehicle {
+  id                 String           @id @default(cuid())
+  registrationNumber String           @unique
+  vehicleName        String
+  model              String
+  manufacturer       String
+  vehicleType        String
+  maxLoadCapacity    Decimal
+  currentOdometer    Int
+  acquisitionCost    Decimal
+  acquisitionDate    DateTime
+  region             String
+  status             String           @default("AVAILABLE")
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  trips              Trip[]
+  maintenanceLogs    MaintenanceLog[]
+  fuelLogs           FuelLog[]
+  expenses           Expense[]
+
+  @@index([status])
+  @@index([registrationNumber])
+  @@index([vehicleType])
+  @@index([region])
+}
+
+model Driver {
+  id                String       @id @default(cuid())
+  name              String
+  email             String?
+  licenseNumber     String       @unique
+  licenseCategory   String
+  licenseExpiryDate DateTime
+  contactNumber     String
+  safetyScore       Int
+  region            String
+  status            String       @default("AVAILABLE")
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+  trips             Trip[]
+
+  @@index([status])
+  @@index([licenseNumber])
+  @@index([licenseExpiryDate])
+  @@index([region])
+}
+
+model Trip {
+  id               String      @id @default(cuid())
+  tripNumber       String      @unique
+  source           String
+  destination      String
+  region           String
+  vehicleId        String
+  driverId         String
+  cargoWeight      Decimal
+  plannedDistance  Decimal
+  actualDistance   Decimal?
+  startOdometer    Int?
+  finalOdometer    Int?
+  fuelConsumed     Decimal?
+  revenue          Decimal
+  plannedStartDate DateTime
+  actualStartDate  DateTime?
+  completionDate   DateTime?
+  status           String      @default("DRAFT")
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  vehicle          Vehicle     @relation(fields: [vehicleId], references: [id])
+  driver           Driver      @relation(fields: [driverId], references: [id])
+  fuelLogs         FuelLog[]
+  expenses         Expense[]
+
+  @@index([status])
+  @@index([tripNumber])
+  @@index([plannedStartDate])
+  @@index([vehicleId])
+  @@index([driverId])
+  @@index([region])
+}
+
+model MaintenanceLog {
+  id                String            @id @default(cuid())
+  vehicleId         String
+  maintenanceType   String
+  description       String
+  startDate         DateTime
+  completionDate    DateTime?
+  cost              Decimal           @default(0)
+  odometerAtService Int
+  serviceProvider   String?
+  status            String            @default("SCHEDULED")
+  notes             String?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  vehicle           Vehicle           @relation(fields: [vehicleId], references: [id])
+
+  @@index([status])
+  @@index([startDate])
+  @@index([vehicleId])
+}
+
+model FuelLog {
+  id            String   @id @default(cuid())
+  vehicleId     String
+  tripId        String?
+  date          DateTime
+  liters        Decimal
+  totalCost     Decimal
+  pricePerLiter Decimal
+  odometer      Int
+  fuelStation   String?
+  notes         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  vehicle       Vehicle  @relation(fields: [vehicleId], references: [id])
+  trip          Trip?    @relation(fields: [tripId], references: [id])
+
+  @@index([date])
+  @@index([vehicleId])
+  @@index([tripId])
+}
+
+model Expense {
+  id               String          @id @default(cuid())
+  vehicleId        String
+  tripId           String?
+  category         String
+  description      String
+  amount           Decimal
+  date             DateTime
+  receiptReference String?
+  notes            String?
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  vehicle          Vehicle         @relation(fields: [vehicleId], references: [id])
+  trip             Trip?           @relation(fields: [tripId], references: [id])
+
+  @@index([date])
+  @@index([category])
+  @@index([vehicleId])
+  @@index([tripId])
+}
+
+model ActivityLog {
+  id          String   @id @default(cuid())
+  userId      String?
+  action      String
+  entityType  String
+  entityId    String
+  description String
+  metadata    String?
+  timestamp   DateTime @default(now())
+  user        User?    @relation(fields: [userId], references: [id])
+
+  @@index([action])
+  @@index([entityType, entityId])
+  @@index([timestamp])
+  @@index([userId])
+}
+
+model Notification {
+  id         String           @id @default(cuid())
+  userId     String?
+  type       String
+  title      String
+  message    String
+  readAt     DateTime?
+  entityType String?
+  entityId   String?
+  createdAt  DateTime         @default(now())
+  user       User?            @relation(fields: [userId], references: [id])
+
+  @@index([readAt])
+  @@index([type])
+  @@index([createdAt])
+  @@index([userId])
+}

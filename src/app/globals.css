@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 24% 97%;
+  --foreground: 222 35% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 35% 12%;
+  --muted: 214 22% 92%;
+  --muted-foreground: 217 13% 40%;
+  --accent: 189 60% 92%;
+  --accent-foreground: 191 80% 18%;
+  --primary: 189 90% 30%;
+  --primary-foreground: 0 0% 100%;
+  --destructive: 0 74% 47%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 214 20% 84%;
+  --input: 214 20% 88%;
+  --ring: 189 84% 40%;
+}
+
+.dark {
+  --background: 222 28% 8%;
+  --foreground: 210 24% 94%;
+  --card: 222 24% 11%;
+  --card-foreground: 210 24% 94%;
+  --muted: 222 18% 17%;
+  --muted-foreground: 215 14% 68%;
+  --accent: 188 45% 16%;
+  --accent-foreground: 186 80% 86%;
+  --primary: 186 84% 38%;
+  --primary-foreground: 0 0% 100%;
+  --destructive: 0 68% 46%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 220 17% 22%;
+  --input: 220 17% 22%;
+  --ring: 186 84% 42%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(20, 184, 166, 0.09), transparent 28rem),
+    linear-gradient(180deg, hsl(var(--background)), hsl(var(--background)));
+  color: hsl(var(--foreground));
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+}
+
+input,
+select,
+textarea {
+  @apply rounded-md border bg-background px-3 py-2 text-sm shadow-sm;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.command-scrollbar {
+  scrollbar-width: thin;
+}
