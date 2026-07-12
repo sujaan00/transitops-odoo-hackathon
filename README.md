@@ -144,7 +144,8 @@ npm test
 ## Screenshots
 
 - Dashboard
-  <img width="1919" height="962" alt="image" src="https://github.com/user-attachments/assets/c5773aed-6b3e-4b76-b19f-60d6d73b4a65" />
+ <img width="1918" height="970" alt="image" src="https://github.com/user-attachments/assets/f25064bb-14a2-4c30-91db-f751b31c7add" />
+
 - Vehicle detail
 - <img width="1919" height="966" alt="Screenshot 2026-07-12 123306" src="https://github.com/user-attachments/assets/7ed392a4-12b2-49d3-bd95-7495ddea0592" />
 - Trip creation wizard
