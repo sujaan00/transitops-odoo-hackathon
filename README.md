@@ -144,15 +144,14 @@ npm test
 ## Screenshots
 
 - Dashboard
- <img width="1918" height="970" alt="image" src="https://github.com/user-attachments/assets/f25064bb-14a2-4c30-91db-f751b31c7add" />
+<img width="1918" height="970" alt="image" src="https://github.com/user-attachments/assets/f25064bb-14a2-4c30-91db-f751b31c7add" />
 
 - Vehicle detail
-- <img width="1919" height="966" alt="Screenshot 2026-07-12 123306" src="https://github.com/user-attachments/assets/7ed392a4-12b2-49d3-bd95-7495ddea0592" />
+<img width="1919" height="966" alt="Screenshot 2026-07-12 123306" src="https://github.com/user-attachments/assets/7ed392a4-12b2-49d3-bd95-7495ddea0592" />
 - Trip creation wizard
-  <img width="1919" height="963" alt="image" src="https://github.com/user-attachments/assets/5d09b63f-e423-4d7f-94db-2e2ccd5461bf" />
+<img width="1919" height="963" alt="image" src="https://github.com/user-attachments/assets/5d09b63f-e423-4d7f-94db-2e2ccd5461bf" />
 - Analytics
 <img width="1912" height="963" alt="image" src="https://github.com/user-attachments/assets/f44febe0-ec95-4d71-ac44-162bf49f6c1d" />
-
 - Reports
 <img width="1919" height="968" alt="image" src="https://github.com/user-attachments/assets/615faad2-436e-4d91-8bfd-5f5e1bd71a66" />
 
@@ -163,12 +162,3 @@ npm test
 - PDF export is not implemented; CSV export is available.
 - Email reminders are not implemented; in-app notifications are available.
 - Role permissions are centralized and enforced server-side, but fine-grained row ownership is out of scope for this hackathon build.
-
-## Future Improvements
-
-- PostgreSQL migration and hosted deployment.
-- PDF report generation.
-- File uploads for receipts, licenses, and vehicle documents.
-- Time-based utilization metrics by vehicle availability window.
-- Maintenance rules by odometer thresholds and recurring schedules.
-- Email notification delivery.
