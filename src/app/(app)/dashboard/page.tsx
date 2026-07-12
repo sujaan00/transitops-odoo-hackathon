@@ -2,6 +2,7 @@ import { addDays, format, isAfter, isBefore, startOfMonth, subDays } from "date-
 import { AlertTriangle, BadgeIndianRupee, ClipboardList, Fuel, Gauge, Route, ShieldAlert, Truck, Users, Wrench } from "lucide-react";
 import Link from "next/link";
 import { BarChartCard, LineChartCard, PieChartCard } from "@/components/charts/operations-charts";
+import { ActiveTripsMap } from "@/components/dashboard/active-trips-map";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MetricCard } from "@/components/ui/metric-card";
 import { PageHeader } from "@/components/ui/page-header";
@@ -123,6 +124,8 @@ export default async function DashboardPage() {
         <MetricCard title="Maintenance Due Soon" value={formatNumber(scheduledMaintenance.length)} icon={Wrench} tone="amber" />
         <MetricCard title="Fleet ROI" value={fleetRoi === null ? "N/A" : formatPercent(fleetRoi)} detail={`${formatCurrency(monthlyRevenue)} monthly revenue`} icon={BadgeIndianRupee} tone="teal" />
       </div>
+
+      <ActiveTripsMap trips={activeTrips} />
 
       <div className="mt-6 grid gap-4 xl:grid-cols-3">
         <LineChartCard title="Trips over time" description="Planned starts and completed trips by day." data={tripTrend} xKey="day" lines={[{ key: "trips", label: "Trips" }, { key: "completed", label: "Completed" }]} />
