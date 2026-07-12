@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   outputFileTracingRoot: process.cwd(),
+  serverExternalPackages: ["pdfkit"],
   experimental: {
     serverActions: {
       bodySizeLimit: "2mb"

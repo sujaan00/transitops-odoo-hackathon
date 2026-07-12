@@ -42,15 +42,21 @@ type LinkButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
 };
 
 export function LinkButton({ className, variant = "primary", size = "md", href, ...props }: LinkButtonProps) {
+  const classes = cn(
+    "inline-flex items-center justify-center gap-2 rounded-md font-medium transition",
+    variants[variant],
+    sizes[size],
+    className
+  );
+
+  if (href.startsWith("/api/")) {
+    return <a href={href} className={classes} {...props} />;
+  }
+
   return (
     <Link
       href={href}
-      className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-md font-medium transition",
-        variants[variant],
-        sizes[size],
-        className
-      )}
+      className={classes}
       {...props}
     />
   );
