@@ -3,12 +3,33 @@ import { calculateFuelEfficiency, calculateOperationalCost, calculateVehicleRoi 
 import { TripStatus } from "@/lib/domain";
 import { requirePermission } from "@/lib/rbac";
 import { prisma } from "@/lib/prisma";
+import { createReportPdf } from "@/lib/report-pdf";
+import { getReportDefinition } from "@/lib/report-definitions";
 import { asNumber, csvEscape } from "@/lib/utils";
 
-export async function GET(_request: Request, context: { params: Promise<{ type: string }> }) {
+export const runtime = "nodejs";
+
+export async function GET(request: Request, context: { params: Promise<{ type: string }> }) {
   await requirePermission("reports:export");
   const { type } = await context.params;
   const rows = await buildRows(type);
+  const format = new URL(request.url).searchParams.get("format");
+
+  if (format === "pdf") {
+    const report = getReportDefinition(type) ?? getReportDefinition("vehicle-roi");
+    const pdf = await createReportPdf({
+      title: report?.title ?? "TransitOps Report",
+      rows
+    });
+
+    return new NextResponse(pdf, {
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": `attachment; filename="transitops-${type}.pdf"`
+      }
+    });
+  }
+
   const csv = toCsv(rows);
 
   return new NextResponse(csv, {
