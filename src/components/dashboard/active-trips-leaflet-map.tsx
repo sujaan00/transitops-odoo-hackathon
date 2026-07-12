@@ -8,7 +8,8 @@ type ActiveTrip = {
   tripNumber: string;
   source: string;
   destination: string;
-  plannedDistance: unknown;
+  plannedDistance: number;
+  actualStartDate: string | null;
 };
 
 type CityCoordinate = {
@@ -132,7 +133,7 @@ export function ActiveTripsLeafletMap({ trips }: { trips: ActiveTrip[] }) {
   }, []);
 
   return (
-    <div className="relative min-h-[430px] overflow-hidden rounded-lg border bg-muted">
+    <div className="active-trips-leaflet-map relative min-h-[430px] overflow-hidden rounded-lg border bg-muted">
       <div ref={containerRef} className="absolute inset-0 z-0" aria-label="OpenStreetMap view of active trip routes across India" />
       <div className="pointer-events-none absolute left-3 top-3 z-[450] rounded-md border bg-card/92 px-3 py-2 text-xs text-muted-foreground shadow-sm backdrop-blur">
         OpenStreetMap route overlay
@@ -147,15 +148,16 @@ function getCityCoordinate(city: string) {
 
 function markerIcon(L: typeof import("leaflet"), color: string, filled: boolean): DivIcon {
   return L.divIcon({
-    className: "",
+    className: "active-trip-marker",
     html: `<span style="
+      --route-color:${color};
+      --marker-fill:${filled ? color : "hsl(var(--card))"};
       display:block;
       width:16px;
       height:16px;
       border-radius:9999px;
-      background:${filled ? color : "#fff"};
-      border:4px solid ${color};
-      box-shadow:0 0 0 4px rgba(255,255,255,.85),0 10px 24px rgba(15,23,42,.28);
+      background:var(--marker-fill);
+      border:4px solid var(--route-color);
     "></span>`,
     iconSize: [16, 16],
     iconAnchor: [8, 8]

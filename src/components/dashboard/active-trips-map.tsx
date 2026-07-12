@@ -30,6 +30,14 @@ const routeColors = ["#14b8a6", "#38bdf8", "#f59e0b", "#a78bfa", "#22c55e", "#fb
 
 export function ActiveTripsMap({ trips }: { trips: ActiveTrip[] }) {
   const visibleTrips = trips.slice(0, 6);
+  const mapTrips = visibleTrips.map((trip) => ({
+    id: trip.id,
+    tripNumber: trip.tripNumber,
+    source: trip.source,
+    destination: trip.destination,
+    plannedDistance: Number(trip.plannedDistance),
+    actualStartDate: trip.actualStartDate?.toISOString() ?? null
+  }));
 
   return (
     <Card className="mt-6 overflow-hidden">
@@ -50,7 +58,7 @@ export function ActiveTripsMap({ trips }: { trips: ActiveTrip[] }) {
           </div>
         ) : (
           <div className="grid gap-5 xl:grid-cols-[1.25fr_0.75fr]">
-            <ActiveTripsLeafletMap trips={visibleTrips} />
+            <ActiveTripsLeafletMap trips={mapTrips} />
 
             <div className="space-y-3">
               {visibleTrips.map((trip, index) => (

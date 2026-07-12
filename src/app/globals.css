@@ -77,3 +77,57 @@ table {
 .command-scrollbar {
   scrollbar-width: thin;
 }
+
+.active-trips-leaflet-map {
+  background: hsl(var(--muted));
+}
+
+.active-trips-leaflet-map .leaflet-container {
+  background: hsl(var(--muted));
+  color: hsl(var(--foreground));
+}
+
+.active-trips-leaflet-map .leaflet-tile-pane {
+  filter: none;
+  transition: filter 180ms ease;
+}
+
+.active-trips-leaflet-map .leaflet-control-zoom a,
+.active-trips-leaflet-map .leaflet-control-attribution,
+.active-trips-leaflet-map .leaflet-popup-content-wrapper,
+.active-trips-leaflet-map .leaflet-popup-tip,
+.active-trips-leaflet-map .leaflet-tooltip {
+  background: hsl(var(--card) / 0.94);
+  border-color: hsl(var(--border));
+  color: hsl(var(--card-foreground));
+}
+
+.active-trips-leaflet-map .leaflet-control-zoom a {
+  border-bottom-color: hsl(var(--border));
+}
+
+.active-trips-leaflet-map .leaflet-control-attribution a,
+.active-trips-leaflet-map .leaflet-popup-content a {
+  color: hsl(var(--primary));
+}
+
+.active-trips-leaflet-map .active-trip-marker span {
+  box-shadow: 0 0 0 4px rgb(255 255 255 / 0.85), 0 10px 24px rgb(15 23 42 / 0.28);
+}
+
+.dark .active-trips-leaflet-map .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.68) contrast(0.92) saturate(0.78);
+}
+
+.dark .active-trips-leaflet-map .leaflet-control-zoom a,
+.dark .active-trips-leaflet-map .leaflet-control-attribution,
+.dark .active-trips-leaflet-map .leaflet-popup-content-wrapper,
+.dark .active-trips-leaflet-map .leaflet-popup-tip,
+.dark .active-trips-leaflet-map .leaflet-tooltip {
+  background: hsl(var(--card) / 0.92);
+  color: hsl(var(--card-foreground));
+}
+
+.dark .active-trips-leaflet-map .active-trip-marker span {
+  box-shadow: 0 0 0 4px rgb(15 23 42 / 0.82), 0 10px 24px rgb(0 0 0 / 0.42);
+}
