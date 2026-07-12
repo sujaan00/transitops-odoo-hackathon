@@ -143,14 +143,18 @@ npm test
 
 ## Screenshots
 
-Screenshots can be generated from the running app for:
-
 - Dashboard
+  <img width="1919" height="962" alt="image" src="https://github.com/user-attachments/assets/c5773aed-6b3e-4b76-b19f-60d6d73b4a65" />
 - Vehicle detail
+- <img width="1919" height="966" alt="Screenshot 2026-07-12 123306" src="https://github.com/user-attachments/assets/7ed392a4-12b2-49d3-bd95-7495ddea0592" />
 - Trip creation wizard
-- Trip detail
+  <img width="1919" height="963" alt="image" src="https://github.com/user-attachments/assets/5d09b63f-e423-4d7f-94db-2e2ccd5461bf" />
 - Analytics
+<img width="1912" height="963" alt="image" src="https://github.com/user-attachments/assets/f44febe0-ec95-4d71-ac44-162bf49f6c1d" />
+
 - Reports
+<img width="1919" height="968" alt="image" src="https://github.com/user-attachments/assets/615faad2-436e-4d91-8bfd-5f5e1bd71a66" />
+
 
 ## Known Limitations
 
