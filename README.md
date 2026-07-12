@@ -163,6 +163,5 @@ npm test
 ## Known Limitations
 
 - SQLite is used for local demonstration. PostgreSQL is recommended for production concurrency and native enum constraints.
-- PDF export is not implemented; CSV export is available.
 - Email reminders are not implemented; in-app notifications are available.
 - Role permissions are centralized and enforced server-side, but fine-grained row ownership is out of scope for this hackathon build.
