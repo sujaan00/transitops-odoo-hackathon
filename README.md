@@ -144,7 +144,7 @@ npm test
 ## Screenshots
 
 - Dashboard
-<img width="1918" height="970" alt="image" src="https://github.com/user-attachments/assets/f25064bb-14a2-4c30-91db-f751b31c7add" />
+<img width="1919" height="966" alt="image" src="https://github.com/user-attachments/assets/7f6009c3-179b-4478-923a-2e2048a47804" />
 
 - Vehicle detail
 <img width="1919" height="966" alt="Screenshot 2026-07-12 123306" src="https://github.com/user-attachments/assets/7ed392a4-12b2-49d3-bd95-7495ddea0592" />
